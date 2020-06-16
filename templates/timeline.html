@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Event Management Timeline!</title>
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
+    </head>
+    <body>
+        <ul class="navbar">
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/signup">Signup</a></li>
+            <li><a href="/timeline"class="active">Timeline</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/features">Features</a></li>
+            <li><a href="/events">Events</a></li>
+            {% if username %}<li><a href="/account" class="right">Hey {{ username }}! / Account Settings</a></li>{% endif %}
+            {% if username %}<li><a href="/logout" class="right">Logout</a></li>{% endif %}
+        </ul>
+        {% if info %}
+        <div class="info">
+            <p style="font-size:32px;"><h3><strong>Information</strong></h3><p>{{ info }}</p></p>
+        </div>
+        {% endif %}
+        <p style="font-size: 32px;">The event management project timeline. Read on to find out more.</p>
+        <p class="timeline-header">1/6/2019</p>
+        <ul class="timeline">
+            <li class="author">~admin</li>
+            <li>Worked on styling the website.</li>
+            <li>The website is officialy finished.</li>
+            <li>We'll be gone for a while.</li>
+            <li>Thanks for all the support!</li>
+        </ul>
+    </body>
+</html>
