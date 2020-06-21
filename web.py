@@ -163,7 +163,7 @@ def forgotPassword():  # function to reset password
                       sender='adityaswarup241@gmail.com', recipients=[email])  # prepare email to be sent to user
         msg.html = '<h1 style="text-align: center;">Hey ' + str(
             username) + "!</h1></br>" + "<h2 style='text-align: center;'>We have received your request to reset your password.</h2></br>" + '<h3 style="text-align: center;">Reset your password <a href=' + "http://127.0.0.1:5000//reset_password/" + getHashed(
-            username) + ">here</a>!</h3>" + '</br><h3 style="text-align: center;">If this was not you, kindly ignore it.' '</br><h4 style="text-align: center;">If you have any queries you may send an email to us at shivampanday097@gmail.com!</h4>'  # code for body of email
+            username) + ">here</a>!</h3>" + '</br><h3 style="text-align: center;">If this was not you, kindly ignore it.' '</br><h4 style="text-align: center;">If you have any queries you may send an email to us at adityaswarup241@gmail.com!</h4>'  # code for body of email
         mail.send(msg)  # send message to user
         return redirect(url_for("home",
                                 success="An email has been sent to the email linked to that username. Please click on the link in the email to reset your password."))  # return to homepage with success message
@@ -218,7 +218,7 @@ def forgotUsername():  # function to get username(s)
                       sender='adityaswarup241@gmail.com', recipients=[email])  # prepare message to be sent to user
         msg.html = '<h1 style="text-align: center;">Hey ' + str(
             email) + "!</h1></br>" + "<h2 style='text-align: center;'>We have received your application to get your usernames.</h2></br>" + '<h3 style="text-align: center;">Here is a list of your usernames:</h3></br><h3 style="text-align: center;">' + "</br>".join(
-            usernames) + "</h3>" + '</br><h4 style="text-align: center;">If you have any queries you may send an email to us at shivampanday097@gmail.com!</h4>'  # code for body of email
+            usernames) + "</h3>" + '</br><h4 style="text-align: center;">If you have any queries you may send an email to us at adityaswarup241@gmail.com!</h4>'  # code for body of email
         mail.send(msg)  # send message to user
         return redirect(url_for("home",
                                 success="We have sent an email with a list of your usernames."))  # return with success message
@@ -263,11 +263,11 @@ def signup():  # signup function
                     db.session.add(user)  # add new user
                     db.session.commit()  # save changes
                     msg = Message('Event Management Account Details for ' + str(username),
-                                  sender='shivampanday097@gmail.com',
+                                  sender='adityaswarup241@gmail.com',
                                   recipients=[email])  # prepare message to be sent to user
                     msg.html = '<h1 style="text-align: center;">Hey ' + str(
                         username) + "!</h1></br>" + "<h2 style='text-align: center;'>We have received your application for an account.</h2></br>" + '<h3 style="text-align: center;">Verify your account <a href=' + "http://127.0.0.1:5000//confirmation/" + getHashed(
-                        username) + ">here</a>!</h3>" + '</br><h4 style="text-align: center;">If you have any queries you may send an email to us at shivampanday097@gmail.com!</h4>'  # code for body of email
+                        username) + ">here</a>!</h3>" + '</br><h4 style="text-align: center;">If you have any queries you may send an email to us at adityaswarup241@gmail.com!</h4>'  # code for body of email
                     mail.send(msg)  # send message to user
                     return redirect(url_for("home", success="You have signed up for an account! Please check your email for a confirmation email."))
                 else:  # username not available
@@ -1047,11 +1047,11 @@ def deleteAccount():  # function to delete account
                 user.confirmed = "N"  # change account status
                 email = user.email  # get user's email
                 msg = Message('Event Management Account Details for ' + str(username),
-                              sender='shivampanday097@gmail.com',
+                              sender='adityaswarup241@gmail.com',
                               recipients=[email])  # prepare message to be sent to user
                 msg.html = '<h1 style="text-align: center;">Hey ' + str(
                     username) + "!</h1></br>" + "<h2 style='text-align: center;'>We have received your request to delete your account.</h2></br>" + '<h3 style="text-align: center;">Re-verify your account <a href=' + "http://127.0.0.1:5000//confirmation/" + getHashed(
-                    username) + ">here</a>!</h3>" + '</br><h4 style="text-align: center;">If you have any queries you may send an email to us at shivampanday097@gmail.com!</h4>'  # code for body of email
+                    username) + ">here</a>!</h3>" + '</br><h4 style="text-align: center;">If you have any queries you may send an email to us at adityaswarup241@gmail.com!</h4>'  # code for body of email
                 mail.send(msg)  # send message to user
                 db.session.commit()  # save changes
                 session.pop('username', None)  # remove user session
