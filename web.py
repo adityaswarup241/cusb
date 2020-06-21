@@ -5,7 +5,7 @@ from flask_mail import Mail, Message  # import mailing system
 import hashlib  # import encryption
 import ast  # import string to list evaluation
 import csv  # import csv file generator and reader
-import datetime  # import timestamp generator
+import datetime  # import timestamp genera..
 
 # setting up website
 app = Flask(__name__)  # configure flask
@@ -14,8 +14,8 @@ app.secret_key = "ITSASECRET"  # secret key for username session
 # setting up mail
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # use gmail
 app.config['MAIL_PORT'] = 465  # mail port
-app.config['MAIL_USERNAME'] = 'shivampanday097@gmail.com'  # email
-app.config['MAIL_PASSWORD'] = 'Snap@6070'  # password
+app.config['MAIL_USERNAME'] = 'rowdyadi@gmail.com'  # email
+app.config['MAIL_PASSWORD'] = 'qwer43@1'  # password
 app.config['MAIL_USE_TLS'] = False  # security type
 app.config['MAIL_USE_SSL'] = True  # security type
 mail = Mail(app)  # include mailing system, we don't know why this has to be done twice
@@ -32,10 +32,10 @@ class User(db.Model):  # user accounts
     __tablename__ = "users"  # user table
 
     id = db.Column(db.Integer, primary_key=True)  # unique user ID
-    username = db.Column(db.String(4096))  # unique username
-    password = db.Column(db.String(4096))  # hashed password
-    email = db.Column(db.String(4096))  # email
-    confirmed = db.Column(db.String(4096))  # account status
+    username = db.Column(db.String(1024))  # unique username
+    password = db.Column(db.String(1024))  # hashed password
+    email = db.Column(db.String(1024))  # email
+    confirmed = db.Column(db.String(1024))  # account status
 
 
 class Event(db.Model):  # events
@@ -43,9 +43,9 @@ class Event(db.Model):  # events
     __tablename__ = "events"  # events table
 
     id = db.Column(db.Integer, primary_key=True)  # unique event ID
-    name = db.Column(db.String(4096))  # uinque name
-    user = db.Column(db.String(4096))  # owner
-    description = db.Column(db.String(4096))  # description
+    name = db.Column(db.String(1024))  # uinque name
+    user = db.Column(db.String(1024))  # owner
+    description = db.Column(db.String(1024))  # description
 
 
 class Form(db.Model):  # forms
@@ -53,12 +53,12 @@ class Form(db.Model):  # forms
     __tablename__ = "forms"  # forms table
 
     id = db.Column(db.Integer, primary_key=True)  # unique form ID
-    name = db.Column(db.String(4096))  # unique name
-    user = db.Column(db.String(4096))  # owner
-    event = db.Column(db.String(4096))  # owner
-    description = db.Column(db.String(4096))  # description
-    questions = db.Column(db.Text(4096))  # question data
-    answers = db.Column(db.String(4096))  # answer csv file
+    name = db.Column(db.String(1024))  # unique name
+    user = db.Column(db.String(1024))  # owner
+    event = db.Column(db.String(1024))  # owner
+    description = db.Column(db.String(1024))  # description
+    questions = db.Column(db.Text(1024))  # question data
+    answers = db.Column(db.String(1024))  # answer csv file
 
 
 db.create_all()
@@ -160,7 +160,7 @@ def forgotPassword():  # function to reset password
         email = user.email  # get user email
         msg = Message('Password reset for Event '
                       'Management Account ' + str(username),
-                      sender='shivampanday097@gmail.com', recipients=[email])  # prepare email to be sent to user
+                      sender='adityaswarup241@gmail.com', recipients=[email])  # prepare email to be sent to user
         msg.html = '<h1 style="text-align: center;">Hey ' + str(
             username) + "!</h1></br>" + "<h2 style='text-align: center;'>We have received your request to reset your password.</h2></br>" + '<h3 style="text-align: center;">Reset your password <a href=' + "http://127.0.0.1:5000//reset_password/" + getHashed(
             username) + ">here</a>!</h3>" + '</br><h3 style="text-align: center;">If this was not you, kindly ignore it.' '</br><h4 style="text-align: center;">If you have any queries you may send an email to us at shivampanday097@gmail.com!</h4>'  # code for body of email
@@ -215,7 +215,7 @@ def forgotUsername():  # function to get username(s)
         for user in users:  # for every user found
             usernames.append(user.username)  # add username to list
         msg = Message('Event Management Account Usernames associated with ' + str(email),
-                      sender='shivampanday097@gmail.com', recipients=[email])  # prepare message to be sent to user
+                      sender='adityaswarup241@gmail.com', recipients=[email])  # prepare message to be sent to user
         msg.html = '<h1 style="text-align: center;">Hey ' + str(
             email) + "!</h1></br>" + "<h2 style='text-align: center;'>We have received your application to get your usernames.</h2></br>" + '<h3 style="text-align: center;">Here is a list of your usernames:</h3></br><h3 style="text-align: center;">' + "</br>".join(
             usernames) + "</h3>" + '</br><h4 style="text-align: center;">If you have any queries you may send an email to us at shivampanday097@gmail.com!</h4>'  # code for body of email
@@ -332,8 +332,8 @@ def contact():  # contact function
         username = request.form["username"]  # get username/name
         email = request.form["email"]  # get email
         query = request.form["query"]  # get query
-        msg = Message('Query from ' + str(username), sender='shivampanday097@gmail.com',
-                      recipients=['shivampanday097@gmail.com'])  # prepare email
+        msg = Message('Query from ' + str(username), sender='adityaswarup241@gmail.com',
+                      recipients=['adityaswarup241@gmail.com'])  # prepare email
         msg.body = "Reply to: " + str(email) + "\n\n" + str(query)  # email to our email so we can read it
         mail.send(msg)  # send query
         return redirect(url_for("home", success="Your query has been sent."))  # return to home with notification
@@ -541,7 +541,7 @@ def createForm(id):  # function to create a form
                 if check is None:  # name not used
                     lastForm = Form.query.order_by(Form.id.desc()).first()  # get last form
                     form = Form(name=name, user=username, event=event.name, description=description, questions="[]",
-                                answers="C:/Users/S Panday/PycharmProjects/webapp/csv/" + str(lastForm.id + 1) + ".csv")  # prepare form
+                                answers="C:/Users/zaya/PycharmProjects/Aditya/webapp/csv/" + str(lastForm.id + 1) + ".csv")  # prepare form
                     db.session.add(form)  # add form
                     db.session.commit()  # save changes
                     return redirect(url_for("manageEvents", success="Form successfully created!"))
