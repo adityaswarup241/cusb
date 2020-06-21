@@ -1,7 +1,7 @@
 version: "2"
 services:
   app:
-    build: /root/event_manage
+    build: /root/cusb1
 
     links:
       - db
